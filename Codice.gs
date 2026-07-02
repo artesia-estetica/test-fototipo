@@ -180,54 +180,16 @@ function costruisciEmailHtml(nome, fototipo) {
 }
 
 /* ----------------------------------------------------------
-   Sezione fissa, UGUALE per ogni fototipo (da "Mappa Rischi -
-   Risultati Test.pdf"): i 3 errori che rovinano l'abbronzatura
-   e la routine prima/durante/dopo sole per fascia di fototipo.
+   Sezione fissa, UGUALE per ogni fototipo: le due locandine
+   originali ("Mappa Rischi - Risultati Test.pdf") mostrate
+   come immagini, non ricostruite in testo.
    ---------------------------------------------------------- */
 function costruisciSezioneRischi() {
-  const errori = [
-    { titolo: 'Non preparare la pelle prima', risultato: 'Scottature e invecchiamento cutaneo' },
-    { titolo: 'Non idratare dopo il sole', risultato: 'Desquamazione, il colorito dura poco' },
-    { titolo: 'Esporsi senza stimolazione della melanina', risultato: 'Abbronzatura irregolare e a macchie' },
-  ];
-
-  const routine = [
-    { fototipo: 'Fototipo I-II', pelle: 'Pelle chiara', prima: 'Solaria spray, attendi 5 min, poi Valens 50+ viso / Prosol 50+ corpo', durante: 'Replica SPF ogni 2 ore', dopo: 'Doccia, detergente cheratolitico, Nutrisol' },
-    { fototipo: 'Fototipo III', pelle: 'Pelle media', prima: 'Solaria spray, attendi 5 min, poi Calidis 30 viso / Prosol 30 corpo', durante: 'Replica SPF ogni 2/3 ore', dopo: 'Doccia, detergente cheratolitico, Nutrisol' },
-    { fototipo: 'Fototipo IV-V-VI', pelle: 'Pelle olivastra / scura', prima: 'Solaria spray, attendi 5 min, poi Calidis 30 viso / Prosol 30 corpo', durante: 'Replica SPF ogni 3 ore', dopo: 'Doccia, detergente cheratolitico, Nutrisol' },
-  ];
-
-  const erroriHtml = errori.map((e, i) => `
-    <div style="display:flex; gap:14px; padding:14px 0; ${i < errori.length - 1 ? 'border-bottom:1px solid #f0e2e4;' : ''}">
-      <div style="font-family:Georgia,'Playfair Display',serif; font-size:20px; color:#c26876; font-weight:600; min-width:22px;">${i + 1}</div>
-      <div>
-        <p style="font-size:14px; color:#2b1c14; font-weight:600; margin:0 0 4px;">${e.titolo}</p>
-        <p style="font-size:13px; color:#6b6b6a; margin:0;"><span style="text-transform:uppercase; letter-spacing:1px; color:#a84f5c; font-weight:600;">Risultato:</span> ${e.risultato}</p>
-      </div>
-    </div>
-  `).join('');
-
-  const routineHtml = routine.map(r => `
-    <div style="background:#ffffff; border:1px solid #f0e2e4; border-radius:12px; padding:16px 18px; margin-bottom:12px;">
-      <p style="font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#a84f5c; font-weight:600; margin:0 0 2px;">${r.fototipo}</p>
-      <p style="font-family:Georgia,'Playfair Display',serif; font-style:italic; color:#6b6b6a; font-size:13px; margin:0 0 10px;">${r.pelle}</p>
-      <p style="font-size:13px; color:#2b1c14; margin:0 0 6px;"><b style="color:#c26876;">Prima:</b> ${r.prima}</p>
-      <p style="font-size:13px; color:#2b1c14; margin:0 0 6px;"><b style="color:#c26876;">Durante:</b> ${r.durante}</p>
-      <p style="font-size:13px; color:#2b1c14; margin:0;"><b style="color:#c26876;">Dopo:</b> ${r.dopo}</p>
-    </div>
-  `).join('');
-
+  const base = 'https://artesia-estetica.github.io/test-fototipo/assets/';
   return `
-    <div style="text-align:left; margin-top:28px; padding-top:24px; border-top:1px solid #f0e2e4;">
-      <p style="font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#a84f5c; font-weight:600; margin:0 0 4px;">I 3 errori che rovinano l'abbronzatura</p>
-      <p style="font-size:13px; color:#6b6b6a; margin:0 0 6px;">Piccoli gesti sbagliati, grandi risultati compromessi.</p>
-      ${erroriHtml}
-    </div>
-
-    <div style="text-align:left; margin-top:26px;">
-      <p style="font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#a84f5c; font-weight:600; margin:0 0 4px;">Routine per un'abbronzatura perfetta</p>
-      <p style="font-size:13px; color:#6b6b6a; margin:0 0 14px;">La tua pelle merita il meglio, prima, durante e dopo il sole. Trova la routine giusta per il tuo fototipo.</p>
-      ${routineHtml}
+    <div style="margin:28px -32px 0 -32px; border-top:1px solid #f0e2e4; padding-top:24px;">
+      <img src="${base}routine-1.jpg" alt="I 3 errori che rovinano l'abbronzatura" width="520" style="width:100%; max-width:520px; height:auto; display:block;">
+      <img src="${base}routine-2.jpg" alt="Routine per un'abbronzatura perfetta, giusta per il tuo fototipo" width="520" style="width:100%; max-width:520px; height:auto; display:block; margin-top:6px;">
     </div>
   `;
 }
