@@ -92,7 +92,7 @@ function salvaSuSheet(data, fototipo) {
     sheet.appendRow([
       'Data', 'Nome', 'Email',
       'Risposta 1', 'Risposta 2', 'Risposta 3', 'Risposta 4', 'Risposta 5', 'Risposta 6',
-      'Punteggio', 'Fototipo',
+      'Punteggio', 'Fototipo', 'Consenso privacy',
     ]);
   }
   const risposte = data.risposte || [];
@@ -104,6 +104,7 @@ function salvaSuSheet(data, fototipo) {
     risposte[3] || '', risposte[4] || '', risposte[5] || '',
     data.punteggio,
     fototipo.titolo,
+    data.consenso ? 'Sì' : 'No',
   ]);
 }
 

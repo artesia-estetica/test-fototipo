@@ -165,6 +165,31 @@
   }
   .field input:focus{border-color:var(--rose);}
 
+  .consent-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:18px 0 4px;
+    cursor:pointer;
+  }
+  .consent-row input{
+    margin-top:3px;
+    width:16px;
+    height:16px;
+    accent-color:var(--rose);
+    flex-shrink:0;
+    cursor:pointer;
+  }
+  .consent-row span{
+    font-size:12.5px;
+    line-height:1.5;
+    color:var(--gray);
+  }
+  .consent-row a{
+    color:var(--rose-dark);
+    text-decoration:underline;
+  }
+
   .btn-primary{
     display:inline-block;
     padding:15px 32px;
@@ -362,19 +387,25 @@ function renderIntro(){
       <label for="emailInput">Email</label>
       <input type="email" id="emailInput" placeholder="La tua email" value="${email}">
     </div>
+    <label class="consent-row">
+      <input type="checkbox" id="consentInput">
+      <span>Ho letto e accetto l'<a href="https://artesiaestetica.it/privacy-policy" target="_blank" rel="noopener">informativa sulla privacy</a> per il trattamento dei miei dati e la ricezione del risultato via email.</span>
+    </label>
     <button class="btn-primary" id="startBtn" disabled>Inizia il test</button>
   `;
   const nomeInput = document.getElementById('nomeInput');
   const emailInput = document.getElementById('emailInput');
+  const consentInput = document.getElementById('consentInput');
   const startBtn = document.getElementById('startBtn');
 
   function check(){
     nome = nomeInput.value.trim();
     email = emailInput.value.trim();
-    startBtn.disabled = !(nome.length > 1 && validEmail(email));
+    startBtn.disabled = !(nome.length > 1 && validEmail(email) && consentInput.checked);
   }
   nomeInput.addEventListener('input', check);
   emailInput.addEventListener('input', check);
+  consentInput.addEventListener('change', check);
   check();
 
   startBtn.addEventListener('click', () => {
@@ -441,6 +472,7 @@ function inviaRisultato(punteggio, fototipo){
     risposte: answers.map((idx, i) => idx !== null ? QUESTIONS[i].options[idx].label : ""),
     punteggio,
     fototipo: fototipo.title,
+    consenso: true,
   };
 
   fetch(SCRIPT_URL, {
