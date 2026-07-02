@@ -15,34 +15,36 @@
 const NOME_FOGLIO = 'Risposte';
 
 /* ----------------------------------------------------------
-   OFFERTE PERSONALIZZATE — sostituisci i testi qui sotto
-   con quelli che hai già pronto per ciascun fototipo.
+   OFFERTA DEDICATA — uguale per tutte le clienti, qualunque
+   sia il fototipo. Modifica solo questo testo per aggiornarla.
    Puoi usare tag HTML semplici (<b>, <br>, ecc.)
    ---------------------------------------------------------- */
+const OFFERTA_UNICA = 'Con l\'acquisto di due prodotti della linea Kyria, in omaggio la borsa mare. Fino ad esaurimento scorte, pochi pezzi disponibili.';
+
 const FOTOTIPI = {
   'I-II': {
     titolo: 'Fototipo I-II',
     sottotitolo: 'Pelle molto chiara',
     descrizione: 'Pelle molto chiara e delicata: si scotta facilmente e fatica ad abbronzarsi. Ha bisogno di protezione elevata e di trattamenti pensati per rispettarne la sensibilità.',
-    offerta: 'INSERIRE QUI OFFERTA DEDICATA AL FOTOTIPO I-II',
+    offerta: OFFERTA_UNICA,
   },
   'III': {
     titolo: 'Fototipo III',
     sottotitolo: 'Pelle media',
     descrizione: 'Carnagione media: reagisce bene al sole e si abbronza in modo graduale. Una pelle equilibrata, che trae beneficio da trattamenti mirati a mantenerne la luminosità.',
-    offerta: 'INSERIRE QUI OFFERTA DEDICATA AL FOTOTIPO III',
+    offerta: OFFERTA_UNICA,
   },
   'IV-V': {
     titolo: 'Fototipo IV-V',
     sottotitolo: 'Pelle olivastra',
     descrizione: 'Pelle olivastra che tende ad abbronzarsi rapidamente, scottandosi raramente. Una pelle resistente, che può beneficiare di trattamenti specifici per uniformità e tono.',
-    offerta: 'INSERIRE QUI OFFERTA DEDICATA AL FOTOTIPO IV-V',
+    offerta: OFFERTA_UNICA,
   },
   'VI': {
     titolo: 'Fototipo VI',
     sottotitolo: 'Pelle scura',
     descrizione: 'Pelle scura che reagisce al sole con un\'abbronzatura intensa e naturale. Una pelle forte, che merita trattamenti pensati per valorizzarne la profondità del colore.',
-    offerta: 'INSERIRE QUI OFFERTA DEDICATA AL FOTOTIPO VI',
+    offerta: OFFERTA_UNICA,
   },
 };
 
