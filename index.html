@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artesia | Scopri il tuo Fototipo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#c26876;
+    --rose-dark:#a84f5c;
+    --rose-light:#e9c3c9;
+    --rose-pale:#faf1f2;
+    --dark:#2b1c14;
+    --gray:#6b6b6a;
+    --white:#ffffff;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Poppins',sans-serif;
+    color:var(--dark);
+    background:linear-gradient(180deg,#fffdfc 0%,#fbf3f3 100%);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 16px;
+  }
+  .quiz-wrap{
+    width:100%;
+    max-width:620px;
+  }
+  .quiz-header{
+    text-align:center;
+    margin-bottom:28px;
+  }
+  .logo{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(28px,6vw,38px);
+    letter-spacing:4px;
+    font-weight:600;
+    color:var(--dark);
+  }
+  .logo-underline{
+    width:56px;
+    height:2px;
+    background:var(--rose);
+    margin:10px auto 14px;
+  }
+  .tagline{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:16px;
+    color:var(--gray);
+    margin:0;
+  }
+  .progress-track{
+    width:100%;
+    height:4px;
+    background:var(--rose-light);
+    border-radius:4px;
+    overflow:hidden;
+    margin-bottom:28px;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--rose);
+    transition:width .4s ease;
+  }
+  .card{
+    background:var(--white);
+    border-radius:20px;
+    box-shadow:0 20px 60px -20px rgba(43,28,20,0.18);
+    padding:clamp(28px,5vw,48px);
+    min-height:360px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    animation:fadeIn .45s ease;
+  }
+  @keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--rose);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  h1.q-title{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+    font-size:clamp(20px,4vw,26px);
+    margin:0 0 24px;
+    line-height:1.35;
+  }
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .option-btn{
+    text-align:left;
+    padding:16px 20px;
+    border-radius:var(--radius);
+    border:1.5px solid #ecdcde;
+    background:#fff;
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    color:var(--dark);
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .option-btn:hover{
+    border-color:var(--rose);
+    background:var(--rose-pale);
+  }
+  .option-btn.selected{
+    border-color:var(--rose);
+    background:var(--rose);
+    color:#fff;
+  }
+  .nav-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:26px;
+  }
+  .back-link{
+    font-size:13px;
+    color:var(--gray);
+    letter-spacing:1px;
+    text-transform:uppercase;
+    cursor:pointer;
+    background:none;
+    border:none;
+    padding:0;
+  }
+  .back-link:hover{color:var(--rose);}
+  .back-link:disabled{visibility:hidden;}
+
+  .field{
+    margin-bottom:16px;
+  }
+  .field label{
+    display:block;
+    font-size:12px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--gray);
+    margin-bottom:6px;
+  }
+  .field input{
+    width:100%;
+    padding:14px 16px;
+    border-radius:var(--radius);
+    border:1.5px solid #ecdcde;
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    color:var(--dark);
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  .field input:focus{border-color:var(--rose);}
+
+  .btn-primary{
+    display:inline-block;
+    padding:15px 32px;
+    border-radius:40px;
+    border:1.5px solid var(--rose);
+    background:var(--rose);
+    color:#fff;
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .2s ease;
+    width:100%;
+    margin-top:8px;
+  }
+  .btn-primary:hover{background:var(--rose-dark); border-color:var(--rose-dark);}
+  .btn-primary:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+  }
+
+  .intro-text{
+    font-size:14px;
+    color:var(--gray);
+    line-height:1.6;
+    margin-bottom:24px;
+  }
+
+  .result-wrap{text-align:center;}
+  .result-eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--rose);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .result-title{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+    font-size:clamp(30px,7vw,42px);
+    margin:0 0 6px;
+  }
+  .result-subtitle{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    color:var(--rose-dark);
+    font-size:17px;
+    margin:0 0 18px;
+  }
+  .result-desc{
+    font-size:14.5px;
+    color:var(--gray);
+    line-height:1.7;
+    max-width:440px;
+    margin:0 auto 20px;
+  }
+  .result-note{
+    background:var(--rose-pale);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    font-size:13.5px;
+    color:var(--dark);
+    line-height:1.6;
+  }
+  .result-note b{color:var(--rose-dark);}
+
+  footer.credits{
+    text-align:center;
+    margin-top:22px;
+    font-size:11px;
+    letter-spacing:1px;
+    color:#c8b9ba;
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="quiz-wrap">
+  <div class="quiz-header">
+    <div class="logo">ARTESIA</div>
+    <div class="logo-underline"></div>
+    <p class="tagline">Scopri il tuo Fototipo</p>
+  </div>
+
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <main class="card" id="card"></main>
+
+  <footer class="credits">Artesia &middot; Test del Fototipo</footer>
+</div>
+
+<script>
+/* ==========================================================
+   DATI TEST — struttura ripresa da "Test fototipo.pdf"
+   ========================================================== */
+const QUESTIONS = [
+  { q:"Qual è il colore naturale dei tuoi capelli?", options:[
+    {label:"Rossi / biondi chiarissimi", score:1},
+    {label:"Biondi / castano chiaro", score:2},
+    {label:"Castani", score:3},
+    {label:"Neri", score:4},
+  ]},
+  { q:"Di che colore sono i tuoi occhi?", options:[
+    {label:"Azzurri / verdi chiari", score:1},
+    {label:"Verdi / grigi", score:2},
+    {label:"Nocciola / castani", score:3},
+    {label:"Neri / marroni scuri", score:4},
+  ]},
+  { q:"Che colore ha la tua pelle (interno braccio)?", options:[
+    {label:"Molto chiara / lattea", score:1},
+    {label:"Chiara / rosata", score:2},
+    {label:"Olivastra", score:3},
+    {label:"Scura / ambrata", score:4},
+  ]},
+  { q:"Hai lentiggini naturali?", options:[
+    {label:"Molte", score:1},
+    {label:"Alcune", score:2},
+    {label:"Poche / nessuna", score:3},
+    {label:"Nessuna", score:4},
+  ]},
+  { q:"Alla prima esposizione al sole (senza protezione), cosa succede?", options:[
+    {label:"Scottatura grave / vesciche", score:1},
+    {label:"Rossore che non abbronza", score:2},
+    {label:"Rossore leggero, poi abbronzatura", score:3},
+    {label:"Abbronzatura diretta, mai scottature", score:4},
+  ]},
+  { q:"Dopo una settimana di sole (con protezione), come sei?", options:[
+    {label:"Ancora chiara / rossa", score:1},
+    {label:"Leggermente dorata", score:2},
+    {label:"Abbronzata media", score:3},
+    {label:"Molto abbronzata", score:4},
+  ]},
+];
+
+const RESULTS = [
+  { min:6,  max:10, code:"I-II",  title:"Fototipo I-II", subtitle:"Pelle molto chiara",
+    desc:"La tua pelle è molto chiara e delicata: si scotta facilmente e fatica ad abbronzarsi. Ha bisogno di protezione elevata e di trattamenti pensati per rispettarne la sensibilità." },
+  { min:11, max:15, code:"III",   title:"Fototipo III", subtitle:"Pelle media",
+    desc:"La tua pelle è di carnagione media: reagisce bene al sole e si abbronza in modo graduale. È una pelle equilibrata, che trae beneficio da trattamenti mirati a mantenerne la luminosità." },
+  { min:16, max:20, code:"IV-V",  title:"Fototipo IV-V", subtitle:"Pelle olivastra",
+    desc:"La tua pelle è olivastra e tende ad abbronzarsi rapidamente, scottandosi raramente. È una pelle resistente, che può beneficiare di trattamenti specifici per uniformità e tono." },
+  { min:21, max:24, code:"VI",    title:"Fototipo VI", subtitle:"Pelle scura",
+    desc:"La tua pelle è scura e reagisce al sole con un'abbronzatura intensa e naturale. È una pelle forte, che merita trattamenti pensati per valorizzarne la profondità del colore." },
+];
+
+/* ==========================================================
+   CONFIGURAZIONE — incolla qui l'URL della Web App Apps Script
+   (vedi ISTRUZIONI.md nella cartella per come ottenerlo)
+   ========================================================== */
+const SCRIPT_URL = "INCOLLA_QUI_URL_WEB_APP_APPS_SCRIPT";
+
+/* ========================================================== */
+
+let step = 0; // 0 = intro, 1..6 = domande, 7 = risultato
+let answers = new Array(QUESTIONS.length).fill(null);
+let nome = "";
+let email = "";
+
+const card = document.getElementById('card');
+const progressFill = document.getElementById('progressFill');
+
+function updateProgress(){
+  const pct = step === 0 ? 0 : Math.min((step / (QUESTIONS.length + 1)) * 100, 100);
+  progressFill.style.width = pct + "%";
+}
+
+function calcolaFototipo(punteggio){
+  return RESULTS.find(r => punteggio >= r.min && punteggio <= r.max) || RESULTS[RESULTS.length - 1];
+}
+
+function validEmail(v){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+}
+
+function render(){
+  updateProgress();
+  if(step === 0) return renderIntro();
+  if(step >= 1 && step <= QUESTIONS.length) return renderQuestion(step - 1);
+  return renderResult();
+}
+
+function renderIntro(){
+  card.innerHTML = `
+    <div class="eyebrow">Prima di iniziare</div>
+    <h1 class="q-title">Ciao! Scopriamo insieme il tuo fototipo</h1>
+    <p class="intro-text">Rispondi a 6 semplici domande: in meno di un minuto scoprirai il tuo fototipo e riceverai via email un consiglio personalizzato pensato per la tua pelle.</p>
+    <div class="field">
+      <label for="nomeInput">Nome</label>
+      <input type="text" id="nomeInput" placeholder="Il tuo nome" value="${nome}">
+    </div>
+    <div class="field">
+      <label for="emailInput">Email</label>
+      <input type="email" id="emailInput" placeholder="La tua email" value="${email}">
+    </div>
+    <button class="btn-primary" id="startBtn" disabled>Inizia il test</button>
+  `;
+  const nomeInput = document.getElementById('nomeInput');
+  const emailInput = document.getElementById('emailInput');
+  const startBtn = document.getElementById('startBtn');
+
+  function check(){
+    nome = nomeInput.value.trim();
+    email = emailInput.value.trim();
+    startBtn.disabled = !(nome.length > 1 && validEmail(email));
+  }
+  nomeInput.addEventListener('input', check);
+  emailInput.addEventListener('input', check);
+  check();
+
+  startBtn.addEventListener('click', () => {
+    step = 1;
+    render();
+  });
+}
+
+function renderQuestion(i){
+  const item = QUESTIONS[i];
+  const selected = answers[i];
+  card.innerHTML = `
+    <div class="eyebrow">Domanda ${i + 1} di ${QUESTIONS.length}</div>
+    <h1 class="q-title">${item.q}</h1>
+    <div class="options">
+      ${item.options.map((opt, idx) => `
+        <button class="option-btn ${selected === idx ? 'selected' : ''}" data-idx="${idx}">${opt.label}</button>
+      `).join('')}
+    </div>
+    <div class="nav-row">
+      <button class="back-link" id="backBtn" ${step === 1 ? 'disabled' : ''}>&larr; Indietro</button>
+    </div>
+  `;
+  card.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx, 10);
+      answers[i] = idx;
+      setTimeout(() => {
+        step++;
+        render();
+      }, 220);
+      card.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+  document.getElementById('backBtn').addEventListener('click', () => {
+    if(step > 1){ step--; render(); }
+  });
+}
+
+function renderResult(){
+  const punteggio = answers.reduce((sum, idx, i) => sum + (idx !== null ? QUESTIONS[i].options[idx].score : 0), 0);
+  const fototipo = calcolaFototipo(punteggio);
+
+  card.innerHTML = `
+    <div class="result-wrap">
+      <div class="result-eyebrow">Il tuo risultato, ${nome}</div>
+      <div class="result-title">${fototipo.title}</div>
+      <p class="result-subtitle">${fototipo.subtitle}</p>
+      <p class="result-desc">${fototipo.desc}</p>
+      <div class="result-note">Grazie per aver completato il test 💌<br>Ti abbiamo inviato una email a <b>${email}</b> con il tuo risultato e un'offerta dedicata pensata apposta per il tuo fototipo.</div>
+    </div>
+  `;
+
+  inviaRisultato(punteggio, fototipo);
+}
+
+function inviaRisultato(punteggio, fototipo){
+  if(SCRIPT_URL.indexOf("INCOLLA_QUI") !== -1) return; // non ancora configurato
+
+  const payload = {
+    nome,
+    email,
+    risposte: answers.map((idx, i) => idx !== null ? QUESTIONS[i].options[idx].label : ""),
+    punteggio,
+    fototipo: fototipo.title,
+  };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload),
+  }).catch(() => {});
+}
+
+render();
+</script>
+</body>
+</html>
