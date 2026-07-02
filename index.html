@@ -38,18 +38,12 @@
     text-align:center;
     margin-bottom:28px;
   }
-  .logo{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(28px,6vw,38px);
-    letter-spacing:4px;
-    font-weight:600;
-    color:var(--dark);
-  }
-  .logo-underline{
-    width:56px;
-    height:2px;
-    background:var(--rose);
-    margin:10px auto 14px;
+  .logo-img{
+    width:100%;
+    max-width:260px;
+    height:auto;
+    display:block;
+    margin:0 auto 14px;
   }
   .tagline{
     font-family:'Playfair Display',serif;
@@ -254,8 +248,7 @@
 
 <div class="quiz-wrap">
   <div class="quiz-header">
-    <div class="logo">ARTESIA</div>
-    <div class="logo-underline"></div>
+    <img class="logo-img" src="assets/logo-artesia.png" alt="Artesia">
     <p class="tagline">Scopri il tuo Fototipo</p>
   </div>
 

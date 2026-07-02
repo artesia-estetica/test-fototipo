@@ -130,9 +130,8 @@ function costruisciEmailHtml(nome, fototipo) {
   <div style="background:#fbf3f3; padding:32px 16px; font-family:'Poppins',Arial,sans-serif;">
     <div style="max-width:520px; margin:0 auto; background:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(43,28,20,0.08);">
 
-      <div style="padding:36px 32px 24px; text-align:center;">
-        <div style="font-family:Georgia,'Playfair Display',serif; font-size:26px; letter-spacing:3px; color:#2b1c14; font-weight:600;">ARTESIA</div>
-        <div style="width:48px; height:2px; background:#c26876; margin:10px auto 0;"></div>
+      <div style="padding:36px 32px 20px; text-align:center;">
+        <img src="https://artesia-estetica.github.io/test-fototipo/assets/logo-artesia.png" alt="Artesia" width="200" style="max-width:200px; height:auto; display:inline-block;">
       </div>
 
       <div style="padding:0 32px 32px; text-align:center;">
